@@ -1,0 +1,84 @@
+// Do not edit this document
+// --------------------------------------------------------
+@import '_settings';
+
+// Set up defaul sizes
+// --------------------------------------------------------
+[class^="col-"], [class*=" col-"] {
+  display: block;
+  float: left;
+  margin: 0 0 #{$grid_gutter} #{$grid_gutter};
+  box-sizing: border-box;
+
+  // For disabling at certain media queries
+  // ------------------------------------------------------
+  @media print {
+    &.noprint {
+      display: none;
+      }
+    }
+  }
+
+
+// Reset base column-viewport
+$base: 0;
+
+/* =======================================================
+                Loop through breakpoint values
+========================================================== */
+@each $min, $max in $breakpoints {
+  @if $max {
+    @media (min-width: #{$min}) and (max-width: #{$max}) {
+      @for $i from ($grid_count - $base) through (2 - $base) {
+        $grid_width: (100% / ($i));
+
+        @if $grid_width == Infinity or $grid_width == 100% or $grid_width < 0 {
+          .col-#{$i + $base} {
+            width: 100%;
+            margin-left: 0;
+            }
+          }
+
+        @else {
+          $grid_spacing: (($grid_gutter * ($i - 1))/$i);
+
+          .col-#{$i + $base} {
+            width: calc(#{$grid_width} - #{$grid_spacing});
+
+            &:nth-of-type(#{$i}n+1) {
+              margin-left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+  @else {
+    @media (min-width: #{$min}) {
+      @for $i from ($grid_count - $base) through (2 - $base) {
+        $grid_width: (100% / ($i));
+
+        @if $grid_width == Infinity or $grid_width == 100% or $grid_width < 0 {
+          .col-#{$i + $base} {
+            width: 100%;
+            margin-left: 0;
+            }
+          }
+
+        @else {
+          $grid_spacing: (($grid_gutter * ($i - 1))/$i);
+
+          .col-#{$i + $base} {
+            width: calc(#{$grid_width} - #{$grid_spacing});
+
+            &:nth-of-type(#{$i}n+1) {
+              margin-left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+  $base: $base + 1;
+  }

@@ -1,0 +1,30 @@
+// Settings for grid
+// --------------------------------------------------------
+$grid_count: 6;
+$grid_gutter: 20px;
+
+
+// For Salvatore spacing
+// --------------------------------------------------------
+$masonry_gutter: 20px;
+
+
+// Calculate individual widths
+// --------------------------------------------------------
+$break_1: 480px;
+$break_2: 600px;
+$break_3: 768px;
+$break_4: 1024px;
+$break_5: 1280px;
+
+
+// Convert breakpoint numbers into breakpoints settings
+// --------------------------------------------------------
+$breakpoints: (
+  ($break_5, null),
+  ($break_4, ($break_5 - 1)),
+  ($break_3, ($break_4 - 1)),
+  ($break_2, ($break_3 - 1)),
+  ($break_1, ($break_2 - 1)),
+  ("0px", ($break_1 - 1))
+);
