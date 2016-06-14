@@ -30,6 +30,7 @@ In your HTML
   </div>
 
   <div class="clear"></div>
+</div>
 ```
 
 This will print out a grid with 3 columns. That's it!
@@ -42,8 +43,8 @@ You can set how many columns are generated in the `_settings.scss` file by chang
 
 
 ### Who to thank ###
-No one. This grid generator likely does nothing for you! The whole thing is scrappy as sin, and very basic, but it might be interesting for anyone wanting to develop their own grid generator and wants to see how loops can be used in the process.
+No one. This grid generator likely does nothing for you, unfortunately. The whole thing is very, very basic, but it might be interesting for anyone wanting to develop their own grid generator and wants to see how scss loops can be used in the process.
 
 
 ### Going forwards ###
-There are many grid generators out there that have a lot of functionality, and fully-fledged features that allow you to have proper masonry and "isotope" layouts - sometimes there is no point re-inventing the wheel. If you're just making a small website and want a quick, no-frills generator for making a few triple-columned grids, this might do you well. But I have no current plans to develop this any further :(
+There are many grid generators out there that have a lot of functionality, and fully-fledged features that allow you to have proper masonry and "isotope" layouts - sometimes there is no point re-inventing the wheel. If you're just making a small website and want a quick, no-frills, no-setup-required generator for making a few triple-columned grids, this might do you well. But I have no current plans to develop this any further :(
