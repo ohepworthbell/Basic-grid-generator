@@ -29,7 +29,7 @@ In your HTML
     This is a column
   </div>
 
-  <div class="clear"></div>
+  <div style="clear: both"></div>
 </div>
 ```
 
