@@ -1,6 +1,27 @@
+// Clear floated divs
+// --------------------------------------------------------
+.clear:after {
+  content: "";
+  display: block;
+  clear: both;
+  }
+
+
 // Do not edit this document
 // --------------------------------------------------------
 @import '_settings';
+
+
+// Convert breakpoint numbers into breakpoints settings
+// --------------------------------------------------------
+$breakpoints: (
+  ($break_5, null),
+  ($break_4, ($break_5 - 1)),
+  ($break_3, ($break_4 - 1)),
+  ($break_2, ($break_3 - 1)),
+  ($break_1, ($break_2 - 1)),
+  ("0px", ($break_1 - 1))
+);
 
 // Set up defaul sizes
 // --------------------------------------------------------
@@ -47,6 +68,7 @@ $base: 0;
 
             &:nth-of-type(#{$i}n+1) {
               margin-left: 0;
+              clear: both;
               }
             }
           }
@@ -73,6 +95,7 @@ $base: 0;
 
             &:nth-of-type(#{$i}n+1) {
               margin-left: 0;
+              clear: both;
               }
             }
           }
