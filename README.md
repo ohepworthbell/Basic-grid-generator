@@ -63,9 +63,9 @@ This will print out a grid with columns. That's it!
 
 
 ### Should I use this ###
-Probably not. This grid generator was made for 2 reasons. The first is that sometimes it's just quicker to use a very basic method like this, which doesn't clog up the system too much, and in nice, simple and manageable for small, basic websites.
+Probably not. This grid generator was made for 2 reasons; the first is that it is very quick and easy to implement for small, basic websites, with simple requirements, ultimately saving time.
 
-The other is practice, from my early days of learning and developing my SCSS knowledge. In that regard, it has served me well.
+The second reason is practice. From my early days of learning and developing in SCSS, setting little projects like this allowed me to experiment with advanced SCSS features, and get my head around SCSS quirks such as how it handles arrays and `@mixins`. In that regard, it has served me well.
 
 
 ### Going forwards ###
