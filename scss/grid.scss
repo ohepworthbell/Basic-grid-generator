@@ -1,107 +1,110 @@
-// Clear floated divs
-// --------------------------------------------------------
-.clear:after {
-  content: "";
-  display: block;
-  clear: both;
-  }
-
-
-// Do not edit this document
-// --------------------------------------------------------
-@import '_settings';
-
-
-// Convert breakpoint numbers into breakpoints settings
-// --------------------------------------------------------
-$breakpoints: (
-  ($break_5, null),
-  ($break_4, ($break_5 - 1)),
-  ($break_3, ($break_4 - 1)),
-  ($break_2, ($break_3 - 1)),
-  ($break_1, ($break_2 - 1)),
-  ("0px", ($break_1 - 1))
-);
-
-// Set up defaul sizes
-// --------------------------------------------------------
+// Set up default sizes
+// -----------------------------------------
 [class^="col-"], [class*=" col-"] {
   display: block;
   float: left;
-  margin: 0 0 #{$grid_gutter} #{$grid_gutter};
+  margin: 0 0 20px 20px;
   box-sizing: border-box;
-
-  // For disabling at certain media queries
-  // ------------------------------------------------------
-  @media print {
-    &.noprint {
-      display: none;
-      }
-    }
   }
 
 
-// Reset base column-viewport
-$base: 0;
+// Convert breakpoint numbers into breakpoints settings
+// -----------------------------------------
+$breakpoints: (
+  ($break_desktop, null),
+  ($break_tablet, ($break_desktop - 1)),
+  ($break_phablet, ($break_tablet - 1)),
+  ($break_mobile, ($break_phablet - 1)),
+  (0px, ($break_mobile - 1))
+);
 
-/* =======================================================
-                Loop through breakpoint values
-========================================================== */
-@each $min, $max in $breakpoints {
-  @if $max {
-    @media (min-width: #{$min}) and (max-width: #{$max}) {
-      @for $i from ($grid_count - $base) through (2 - $base) {
-        $grid_width: (100% / ($i));
 
-        @if $grid_width == Infinity or $grid_width == 100% or $grid_width < 0 {
-          .col-#{$i + $base} {
-            width: 100%;
-            margin-left: 0;
-            }
-          }
+// Create that lovely grid
+// -----------------------------------------
+@mixin create_grid($grid_gutter, $count) {
+  [class^="col-"], [class*=" col-"] {
+    margin: 0 0 0 $grid_gutter;
+    }
 
-        @else {
-          $grid_spacing: (($grid_gutter * ($i - 1))/$i);
+  // Reset base column-viewport
+  // -----------------------------------------
+  $base: 0;
 
-          .col-#{$i + $base} {
-            width: calc(#{$grid_width} - #{$grid_spacing});
 
-            &:nth-of-type(#{$i}n+1) {
+  // Loop through breakpoint values
+  // -----------------------------------------
+  @each $min, $max in $breakpoints {
+    @if $max {
+      @media (min-width: #{$min}) and (max-width: #{$max}) {
+        @for $i from ($count - $base) through (2 - $base) {
+          $grid_width: (100% / ($i));
+
+          @if $grid_width == Infinity or $grid_width == 100% or $grid_width < 0 {
+            .col-#{$i + $base} {
+              width: 100%;
               margin-left: 0;
-              clear: both;
+
+              &:not(:first-child) {
+                margin-top: #{$grid_gutter};
+                }
               }
+            }
+
+          @else {
+            $grid_spacing: (($grid_gutter * ($i - 1))/$i);
+
+            .col-#{$i + $base} {
+              width: calc(#{$grid_width} - #{$grid_spacing});
+
+              &:nth-of-type(#{$i}n+1) {
+                margin-left: 0;
+                clear: both;
+                }
+              }
+            }
+
+          .col-#{$i + $base}:nth-of-type(n+#{$count - $base + 1}) {
+            margin-top: #{$grid_gutter};
             }
           }
         }
       }
-    }
-  @else {
-    @media (min-width: #{$min}) {
-      @for $i from ($grid_count - $base) through (2 - $base) {
-        $grid_width: (100% / ($i));
+    @else {
+      @media (min-width: #{$min}) {
+        @for $i from ($count - $base) through (2 - $base) {
+          $grid_width: (100% / ($i));
 
-        @if $grid_width == Infinity or $grid_width == 100% or $grid_width < 0 {
-          .col-#{$i + $base} {
-            width: 100%;
-            margin-left: 0;
-            }
-          }
-
-        @else {
-          $grid_spacing: (($grid_gutter * ($i - 1))/$i);
-
-          .col-#{$i + $base} {
-            width: calc(#{$grid_width} - #{$grid_spacing});
-
-            &:nth-of-type(#{$i}n+1) {
+          @if $grid_width == Infinity or $grid_width == 100% or $grid_width < 0 {
+            .col-#{$i + $base} {
+              width: 100%;
               margin-left: 0;
-              clear: both;
+
+              &:not(:first-child) {
+                margin-top: #{$grid_gutter};
+                }
               }
+            }
+
+          @else {
+            $grid_spacing: (($grid_gutter * ($i - 1))/$i);
+
+            .col-#{$i + $base} {
+              width: calc(#{$grid_width} - #{$grid_spacing});
+
+              &:nth-of-type(#{$i}n+1) {
+                margin-left: 0;
+                clear: both;
+                }
+              }
+            }
+
+          .col-#{$i + $base}:nth-of-type(n+#{$count - $base + 1}) {
+            margin-top: #{$grid_gutter};
             }
           }
         }
       }
-    }
 
-  $base: $base + 1;
+    $base: $base + 1;
+    }
   }

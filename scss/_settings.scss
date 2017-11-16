@@ -1,13 +1,47 @@
-// Settings for grid
-// --------------------------------------------------------
-$grid_count: 6;
+// Set default guttering
+// -----------------------------------------
 $grid_gutter: 20px;
 
 
 // Calculate individual widths
-// --------------------------------------------------------
-$break_1: 480px;
-$break_2: 600px;
-$break_3: 768px;
-$break_4: 1024px;
-$break_5: 1280px;
+// -----------------------------------------
+$break_mobile: 330px;
+$break_phablet: 400px;
+$break_tablet: 760px;
+$break_desktop: 1100px;
+
+
+// Import the grid layout
+// -----------------------------------------
+@import 'grid';
+
+
+// Create clear div to prevent layout bleed
+// -----------------------------------------
+%clear {
+  clear: both;
+
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    }
+  }
+
+
+// Example call
+// -----------------------------------------
+
+/*
+ *  This is an example call of a grid, for a 4-column layout with a gutter of 35px
+ *  @include create_grid(35px, 4);
+ *
+ *  NOTE: Whilst any guttering width can be used, it is advised that you always
+ *  ensure that measurements are in pixels rather than percent, em or rem. This is
+ *  because non-pixel measurements can cause rounding bugs in Firefox
+ */
+
+.your-element-name {
+  @extend %clear;
+  @include create_grid($grid_gutter, 4);
+  }
